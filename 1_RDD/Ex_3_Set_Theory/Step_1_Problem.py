@@ -1,0 +1,20 @@
+from __future__ import print_function
+from pyspark.sql import SparkSession
+
+# Set theory in Spark
+
+if __name__ == "__main__":
+    spark = SparkSession \
+        .builder \
+        .master("local[2]") \
+        .appName("Set_theory") \
+        .getOrCreate()
+
+    spark.sparkContext.setLogLevel("ERROR")
+    sc = spark.sparkContext
+
+    jvmLanguages = sc.parallelize(["Scala", "Java", "Groovy", "Kotlin", "Ceylon"])
+    functionalLanguages = sc.parallelize(["Scala", "Kotlin", "JavaScript", "Haskell"])
+    webLanguages = sc.parallelize(["PHP", "Ruby", "Perl", "PHP", "JavaScript"])
+
+    spark.stop()
