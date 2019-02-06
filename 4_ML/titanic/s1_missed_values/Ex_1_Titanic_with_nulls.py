@@ -60,8 +60,6 @@ if __name__ == "__main__":
     print("Test Error = %g " % (1.0 - accuracy))
 
     # Step - 7: Print out the model
-    treeModel = model.stages[2]
-    # summary only
-    print(treeModel)
+    print(model)
 
     spark.stop()
