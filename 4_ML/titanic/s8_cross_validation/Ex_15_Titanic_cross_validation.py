@@ -143,8 +143,8 @@ if __name__ == "__main__":
     print("---------- The best model's parameters are ----------")
     print(cvModel.bestModel)
     print(cvModel.avgMetrics)
-    print("Best num of features " + cvModel.bestModel.stages[2].getNumFeatures())
-    print("Best amount of components in PCA " + cvModel.bestModel.stages[9].getK())
+    print("Best num of features " + str(cvModel.bestModel.stages[2].getNumFeatures()))
+    print("Best amount of components in PCA " + str(cvModel.bestModel.stages[9].getK()))
 
     rawPredictions = cvModel.transform(test)
 
