@@ -144,7 +144,7 @@ if __name__ == "__main__":
     print(cvModel.bestModel)
     print(cvModel.avgMetrics)
     print("Best num of features " + str(cvModel.bestModel.stages[2].getNumFeatures()))
-    print("Best amount of components in PCA " + str(cvModel.bestModel.stages[9].getK()))
+    print("Best amount of components in PCA " + str(cvModel.bestModel.stages[9]._java_obj.getK()))
 
     rawPredictions = cvModel.transform(test)
 
