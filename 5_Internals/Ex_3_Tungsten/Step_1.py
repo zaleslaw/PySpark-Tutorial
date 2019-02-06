@@ -1,6 +1,8 @@
 from pyspark.sql import SparkSession
 
-# Let's make simple query
+# Create large RDD, convert to DF, compare stolen size in storage.
+from pyspark.storagelevel import StorageLevel
+
 if __name__ == "__main__":
     spark = SparkSession \
         .builder \
@@ -9,11 +11,16 @@ if __name__ == "__main__":
         .getOrCreate()
 
     spark.sparkContext.setLogLevel("ERROR")
+    sc = spark.sparkContext
 
-    stateNames = spark.read.parquet("/home/zaleslaw/data/stateNames")
+    intSeq = []
+    for i in range(10000000):
+        intSeq.append(i)
 
-    query = stateNames.where("Year = 2014")
-    query.show()
-    print(query.explain(extended=True))
+    intRDD = sc.parallelize(intSeq)
+    print(intRDD.persist(StorageLevel.MEMORY_ONLY).count())
+    df = intRDD.map(lambda x: (x,)).toDF()
+    print(df.persist(StorageLevel.MEMORY_ONLY).count())
+    df.show()
 
     spark.stop()
