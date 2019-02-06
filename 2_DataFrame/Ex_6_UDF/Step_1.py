@@ -2,6 +2,7 @@ from __future__ import print_function
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf
 
+
 # Define UDF and use in DF API
 
 def isWorldWarTwoYearFunction(year):
