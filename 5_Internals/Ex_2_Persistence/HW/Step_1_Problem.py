@@ -1,3 +1,5 @@
+import os
+
 from pyspark.sql import SparkSession
 
 # Cache data and see new plan
@@ -10,6 +12,7 @@ from pyspark.storagelevel import StorageLevel
 # try to play with Storage Levels, check on <hostname>:4040/storage/ that rdd/df was cashed
 # discuss hypothesis
 if __name__ == "__main__":
+    os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3"
     spark = SparkSession \
         .builder \
         .master("local[2]") \

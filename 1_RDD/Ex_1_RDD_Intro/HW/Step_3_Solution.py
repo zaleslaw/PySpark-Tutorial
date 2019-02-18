@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import math
+import os
 
 from pyspark.sql import SparkSession
 
@@ -10,6 +11,8 @@ def exp(x):
 
 
 if __name__ == "__main__":
+    os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3"
+
     spark = SparkSession \
         .builder \
         .master("local[2]") \

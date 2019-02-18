@@ -1,9 +1,13 @@
+import os
+
 from pyspark.sql import SparkSession
 
 # Unpersist data and see the old plan
 from pyspark.storagelevel import StorageLevel
 
 if __name__ == "__main__":
+    os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3"
+
     spark = SparkSession \
         .builder \
         .master("local[2]") \

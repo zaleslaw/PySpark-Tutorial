@@ -1,3 +1,5 @@
+import os
+
 from pyspark.sql import SparkSession
 
 # Cache data and see new plan
@@ -6,6 +8,8 @@ from pyspark.sql import SparkSession
 from pyspark.storagelevel import StorageLevel
 
 if __name__ == "__main__":
+    os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3"
+
     spark = SparkSession \
         .builder \
         .master("local[2]") \

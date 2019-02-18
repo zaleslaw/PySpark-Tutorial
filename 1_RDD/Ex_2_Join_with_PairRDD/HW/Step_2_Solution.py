@@ -9,6 +9,8 @@ from pyspark.sql import SparkSession
 # Get keys and values separately
 
 if __name__ == "__main__":
+    os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3"
+
     spark = SparkSession \
         .builder \
         .master("local[2]") \

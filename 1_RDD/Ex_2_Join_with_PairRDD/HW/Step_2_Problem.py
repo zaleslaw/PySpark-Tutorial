@@ -1,4 +1,7 @@
 from __future__ import print_function
+
+import os
+
 from pyspark.sql import SparkSession
 
 # Get amount of values by each key in joinResult
@@ -6,6 +9,8 @@ from pyspark.sql import SparkSession
 # Get keys and values separately
 
 if __name__ == "__main__":
+    os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3"
+
     spark = SparkSession \
         .builder \
         .master("local[2]") \

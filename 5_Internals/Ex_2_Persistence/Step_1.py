@@ -1,7 +1,11 @@
+import os
+
 from pyspark.sql import SparkSession
 
 # Let's make simple query
 if __name__ == "__main__":
+    os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3"
+
     spark = SparkSession \
         .builder \
         .master("local[2]") \

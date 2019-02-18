@@ -1,7 +1,10 @@
+import os
+
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import avg
 
 if __name__ == "__main__":
+    os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3"
+
     spark = SparkSession \
         .builder \
         .master("local[2]") \

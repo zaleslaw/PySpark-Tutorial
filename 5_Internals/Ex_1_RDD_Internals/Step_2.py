@@ -1,7 +1,11 @@
+import os
+
 from pyspark.sql import SparkSession
 
 # RDD keeps partitions after narrow operations
 if __name__ == "__main__":
+    os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3"
+
     spark = SparkSession \
         .builder \
         .master("local[2]") \

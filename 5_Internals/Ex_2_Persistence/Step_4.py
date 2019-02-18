@@ -1,3 +1,5 @@
+import os
+
 from pyspark.sql import SparkSession
 
 # Persist with Spark SQL
@@ -7,6 +9,8 @@ from pyspark.sql import SparkSession
 # vs direct file scan in the second example
 
 if __name__ == "__main__":
+    os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3"
+
     spark = SparkSession \
         .builder \
         .master("local[2]") \
