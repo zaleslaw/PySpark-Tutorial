@@ -5,7 +5,9 @@ import os
 from pyspark.sql import SparkSession
 
 if __name__ == "__main__":
-    os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3.4"
+    os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3"
+    # "os.environ["PYSPARK_PYTHON"] = "/usr/bin/python3.4"
+    
 
     spark = SparkSession \
         .builder \

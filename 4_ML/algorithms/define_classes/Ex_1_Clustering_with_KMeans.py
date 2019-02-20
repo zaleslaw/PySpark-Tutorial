@@ -1,6 +1,8 @@
 from pyspark.ml.clustering import KMeans
 from pyspark.ml.feature import VectorAssembler
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import collect_list
+
 
 def getSparkSession():
     spark = SparkSession \

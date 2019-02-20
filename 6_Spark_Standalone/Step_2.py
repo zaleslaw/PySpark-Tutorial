@@ -14,7 +14,7 @@ if __name__ == "__main__":
     nationalNames = spark.read \
         .option("header", "true") \
         .option("inferSchema", "true") \
-        .csv("hdfs://172.24.0.2:8020/tmp/NationalNames.csv")
+        .csv("hdfs://172.24.0.3:8020/tmp/NationalNames.csv")
 
     print(nationalNames.is_cached)
     nationalNames.cache()
@@ -30,6 +30,6 @@ if __name__ == "__main__":
         .orderBy("Name", "Year") \
         .show(100)
 
-    nationalNames.write.mode("overwrite").json("hdfs://172.24.0.2:8020/tmp/nationalNames")
+    nationalNames.write.mode("overwrite").json("hdfs://172.24.0.3:8020/tmp/nationalNames")
 
     spark.stop()
