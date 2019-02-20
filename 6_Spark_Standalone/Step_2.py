@@ -5,7 +5,7 @@ from pyspark.sql import SparkSession
 if __name__ == "__main__":
     spark = SparkSession \
         .builder \
-        .master("spark://172.18.0.2:7077") \
+        .master("spark://172.24.0.4:7077") \
         .appName("DataFrame Intro") \
         .getOrCreate()
 
@@ -14,7 +14,7 @@ if __name__ == "__main__":
     nationalNames = spark.read \
         .option("header", "true") \
         .option("inferSchema", "true") \
-        .csv("/tmp/data/datasets/NationalNames.csv")
+        .csv("hdfs://172.24.0.2:8020/tmp/NationalNames.csv")
 
     print(nationalNames.is_cached)
     nationalNames.cache()
@@ -29,5 +29,7 @@ if __name__ == "__main__":
         .select("Name", "Year", "Count") \
         .orderBy("Name", "Year") \
         .show(100)
+
+    nationalNames.write.mode("overwrite").json("hdfs://172.24.0.2:8020/tmp/nationalNames")
 
     spark.stop()

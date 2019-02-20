@@ -1,10 +1,6 @@
-from pyspark.ml.classification import DecisionTreeClassifier
 from pyspark.ml.clustering import KMeans
-from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 from pyspark.ml.feature import VectorAssembler
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import collect_list
-
 
 def getSparkSession():
     spark = SparkSession \
@@ -21,19 +17,19 @@ def readAnimalDataset(spark):
         .option("inferSchema", "true") \
         .option("charset", "windows-1251") \
         .option("header", "true") \
-        .csv("/home/zaleslaw/data/cyr_animals.csv")
+        .csv("/home/zaleslaw/data/cyr_animals.csv") \
 
-    animals.show()
+    animals.show() \
 
     classNames = spark.read \
         .option("inferSchema", "true") \
         .option("charset", "windows-1251") \
         .option("header", "true") \
-        .csv("/home/zaleslaw/data/cyr_class.csv")
+        .csv("/home/zaleslaw/data/cyr_class.csv") \
 
-    classNames.show(truncate=False)
+    classNames.show(truncate=False) \
 
-    animalsWithClassTypeNames = animals.join(classNames, animals.type == classNames.Class_Number)
+    animalsWithClassTypeNames = animals.join(classNames, animals.type == classNames.Class_Number) \
 
     return animalsWithClassTypeNames
 
@@ -45,10 +41,9 @@ if __name__ == "__main__":
 
     # Step - 1: Make Vectors from dataframe's columns using special Vector Assmebler
 
-    assembler = VectorAssembler(
-        inputCols=["hair", "milk", "eggs"],
+    assembler = VectorAssembler(inputCols=["hair", "milk", "eggs"], outputCol="features")
         # "hair", "feathers", "eggs", "milk", "airborne", "aquatic", "predator", "toothed", "backbone", "breathes", "venomous", "fins", "legs", "tail", "domestic", "catsize"
-        outputCol="features")
+
 
     # Step - 2: Transform dataframe to vectorized dataframe
     vectorizedDF = assembler.transform(animals).select("features", "cyr_name", "Cyr_Class_Type")
